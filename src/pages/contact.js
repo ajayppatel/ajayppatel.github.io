@@ -7,7 +7,7 @@ export default function Contact() {
     <div style={{ color: `teal` }}>
       <Link to="/">Home</Link>
       <Header headerText="Contact" />
-      <p>Send us a message!</p>
+      <p>Send me a message!</p>
     </div>
   )
 }
