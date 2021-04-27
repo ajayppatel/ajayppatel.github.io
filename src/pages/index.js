@@ -10,13 +10,12 @@ const IndexPage = () => (
     <SEO title="Home" />
     <h1>Hello!</h1>
     <p>My name is Ajay. Welcome!</p>
-    <p>Now go build something great.</p>
     <StaticImage
-      src="../images/gatsby-astronaut.png"
+      src="../images/ajay-grad.png"
       width={300}
       quality={95}
       formats={["AUTO", "WEBP", "AVIF"]}
-      alt="A Gatsby astronaut"
+      alt="Ajay's graduation"
       style={{ marginBottom: `1.45rem` }}
     />
     <p>
