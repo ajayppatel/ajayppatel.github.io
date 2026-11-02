@@ -1,86 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
   <title>Ajay Patel</title>
-  <meta name="description" content="Ajay Patel — Personal website.">
+  <meta name="description" content="Ajay Patel, software engineer in Brooklyn, NY. Unlock the phone to look around.">
   <meta property="og:title" content="Ajay Patel">
-  <meta property="og:description" content="Ajay Patel — Personal website.">
+  <meta property="og:description" content="Software engineer in Brooklyn, NY. Unlock the phone to look around.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ajayppatel.com">
+  <meta property="og:image" content="https://ajayppatel.com/images/ajay.jpg">
   <meta name="twitter:card" content="summary">
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+  <meta name="theme-color" content="#0f1433">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232b2160'/><rect x='30' y='14' width='40' height='72' rx='9' fill='none' stroke='white' stroke-width='6'/><rect x='42' y='76' width='16' height='3' rx='1.5' fill='white'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/os.css">
 </head>
-
 <body>
+  <noscript>
+    <p style="padding:24px;font-family:sans-serif">This site needs JavaScript. Here's the <a href="/classic/">classic version</a>.</p>
+  </noscript>
 
-  <div class="container">
+  <div class="os" id="os">
+    <div class="wall" id="wall" aria-hidden="true">
+      <svg class="skyline" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice">
+        <path fill="#1a1230" fill-opacity=".7" d="M0 210h30v-40h20v-22h14v22h18v-60h22v60h14v-30h28v30h12v-90h8v-14h8v14h8v90h18v-46h24v46h14v-24h22v24h20v-70h30v70h14v-36h18v36h22v-52h28v52h18v-28h24v28h26v-64h18v64h28v-40h22v40h16v-80h10v-18h10v18h10v80h20v-34h26v34h18v-58h24v58h16v-26h30v26h20v-72h22v72h18v-44h26v44h14v-30h22v30h20v-60h18v60h24v-38h28v38h16v-52h22v52h30v90H0z"/>
+        <path fill="none" stroke="#1a1230" stroke-opacity=".9" stroke-width="4" d="M-20 255 Q 200 195 420 255 T 860 250 T 1240 245"/>
+        <path fill="#120c24" d="M120 260v-72h12v-14h14v14h12v72zM400 260v-74h12v-14h14v14h12v74z"/>
+        <rect y="258" width="1200" height="42" fill="#120c24"/>
+      </svg>
+    </div>
 
-    <!-- Header -->
-    <header class="header">
-      <div class="header__inner">
-        <a href="/" class="header__name">Ajay Patel</a>
-        <nav>
-          <ul class="header__nav">
-            <li><a href="#about">About</a></li>
-            <li><a href="#links">Links</a></li>
-          </ul>
-        </nav>
-      </div>
+    <header class="status" id="status">
+      <span class="status__time"><span id="sbTime">9:41</span><span class="status__date" id="sbDate"></span></span>
+      <span class="status__icons" aria-hidden="true">
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 11.5 5.6 9a3.4 3.4 0 0 1 4.8 0zM3.5 7a6.4 6.4 0 0 1 9 0l1.4-1.4a8.4 8.4 0 0 0-11.8 0zM.7 4.2a10.4 10.4 0 0 1 14.6 0L16.7 2.8a12.4 12.4 0 0 0-17.4 0z"/></svg>
+        <span class="battery"><i id="batt"></i></span>
+      </span>
     </header>
 
-    <!-- Hero -->
-    <section class="hero">
-      <h1 class="hero__greeting">Hello, I'm <strong>Ajay</strong>.</h1>
+    <!-- HOME SCREEN -->
+    <main class="home" id="home" aria-label="Home screen">
+      <button class="jiggle-done" id="jiggleDone">Done</button>
+      <div class="pages" id="pages"></div>
+      <button class="search-pill" id="searchPill" aria-label="Search apps">
+        <span class="search-pill__label"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="7" cy="7" r="5.5"/><path d="m11 11 4 4"/></svg>Search</span>
+        <span class="search-pill__dots" id="pageDots"></span>
+      </button>
+      <nav class="dock" id="dock" aria-label="Dock"></nav>
+    </main>
 
-    </section>
-
-    <hr class="divider">
-
-    <!-- About -->
-    <section class="section fade-in" id="about">
-      <p class="section__label">About</p>
-      <div class="about__layout">
-        <div class="about__photo">
-          <img src="images/ajay.png" alt="Ajay Patel" loading="lazy">
-        </div>
-        <div class="about__text">
-          <p>
-            I'm a Software Engineer living in Brooklyn, NY. I graduated from the University of Virginia in 2019.
-            Currently, I work at Apple on large scale distributed
-            systems and data services.
-          </p>
-          <p>
-            In my free time, I enjoy cycling and doom-scrolling on Twitter. I'm also trying to swim more and start
-            building AI slop.
-          </p>
-        </div>
+    <!-- LOCK SCREEN -->
+    <section class="lock" id="lock" tabindex="0" aria-label="Lock screen. Press Enter or swipe up to unlock.">
+      <svg class="lock__padlock" width="26" height="34" viewBox="0 0 32 40" aria-hidden="true"><path class="shackle" d="M8 18v-7a8 8 0 0 1 16 0v7" fill="none" stroke="#fff" stroke-width="3.5"/><rect x="3" y="17" width="26" height="20" rx="5" fill="#fff"/></svg>
+      <div class="lock__date" id="lkDate"></div>
+      <div class="lock__clock" id="lkTime">9:41</div>
+      <div class="lock__notifs" id="notifs"></div>
+      <span class="lock__quick lock__quick--l" aria-hidden="true"><svg width="16" height="22" viewBox="0 0 18 22" fill="#fff"><path d="M5 0h8l1 6-3 4v12H7V10L4 6z"/></svg></span>
+      <span class="lock__quick lock__quick--r" aria-hidden="true"><svg width="22" height="18" viewBox="0 0 34 28" fill="#fff"><path d="M11 0h12l3 4h5a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h5z"/><circle cx="17" cy="15" r="6" fill="#2b2160"/></svg></span>
+      <div class="lock__bottom">
+        <button class="lock__hint" id="hint">Swipe up to open</button>
+        <div class="homebar"></div>
       </div>
     </section>
 
-    <hr class="divider">
-
-    <!-- Links -->
-    <section class="section fade-in" id="links">
-      <p class="section__label">Elsewhere</p>
-      <div class="links__list">
-        <a href="https://github.com/ajayppatel" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://linkedin.com/in/ajaypateluva" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <!-- APP WINDOW -->
+    <div class="app-layer" id="appLayer" hidden>
+      <div class="app-backdrop" id="appBackdrop"></div>
+      <div class="appwin" id="appwin" role="dialog" aria-modal="true" aria-labelledby="appTitle">
+        <div class="appwin__chrome">
+          <button class="light light--close" id="winClose" aria-label="Close app"></button>
+          <button class="light light--min" id="winMin" aria-label="Minimize"></button>
+          <button class="light light--max" id="winMax" aria-label="Toggle full screen"></button>
+          <span class="appwin__title" id="appTitle"></span>
+        </div>
+        <div class="appwin__body" id="appBody"></div>
+        <button class="appwin__grab" id="grab" aria-label="Back to home screen"><i></i></button>
       </div>
-    </section>
+    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <p class="footer__text">&copy; 2026 Ajay Patel</p>
-    </footer>
+    <!-- SPOTLIGHT -->
+    <div class="spotlight" id="spotlight" hidden>
+      <div class="spotlight__box">
+        <div class="spotlight__field">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="7" r="5.5"/><path d="m11 11 4 4"/></svg>
+          <input id="spotIn" placeholder="Search" autocomplete="off" aria-label="Search apps">
+          <button id="spotCancel">Cancel</button>
+        </div>
+        <div class="spotlight__results" id="spotResults"></div>
+      </div>
+    </div>
 
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/drive.js"></script>
+  <script src="js/os.js"></script>
 </body>
-
 </html>
