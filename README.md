@@ -17,6 +17,7 @@ Almost everything lives in **`js/config.js`**: bio, links, photos, places, proje
 - `js/os.js` — lock screen, home screen, apps
 - `js/drive.js` — the Drive mini-game
 - `classic/` — the previous plain version of the site
+- `games/` — games hub at ajayppatel.com/games/ (e.g. Word Vistas)
 - Deep links: `ajayppatel.com/#drive`, `#about`, `#messages`, etc.
 
 ## Deployment

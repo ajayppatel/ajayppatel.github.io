@@ -16,3 +16,7 @@ Thumbs.db
 # Env
 .env
 .env.local
+
+# Word Vistas level tooling
+games/word-vistas/node_modules/
+games/word-vistas/dist/
